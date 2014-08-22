@@ -4,7 +4,7 @@ Encryption in a browser
 Demonstration how public key encryption could work in a broswer.  Its based on the [jsencrypt](https://github.com/travist/jsencrypt) java library.
 
 
-[Github hoste DEMO](http://coder36.github.io/jsencrypt) 
+[DEMO](http://coder36.github.io/jsencrypt) 
 
 
 During development, I used a local http server to serve up the content.  
