@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <script src="scripts/jquery-1.11.1.min.js"></script>
+    <script src="scripts/jsencrypt.min.js"/></script>
+    <style>
+      body {
+        font-family: "nta", Arial, sans-serif;
+        font-size: 19px;
+        line-height: 1.31579;
+        font-weight: 400;
+        text-transform: none;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .encrypt_container {
+        border: 1px;
+        display: block;
+        box-sizing: border-box;
+        background-color: #b0c4de;
+        padding: 10px;
+      }
+
+      .secret {
+        margin: 10px 10px 10px 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="encrypt_container">
+      <div>
+        <p>Environment?</p>
+        <select id="env">
+          <option value="dev.pem">DEV</option>
+          <option value="live.pem">LIVE</option>
+        </select>
+      </div>
+      <div class="secret">
+        <p>Text to encrypt</p>
+        <textarea id="text" type="text" rows=4 cols=70>password</textarea>
+        <br/>
+        <button id="encode" type="button">Encrypt</button>
+        <br/>
+        <textarea id="encoded_text" type="text" rows=10 cols=70></textarea>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    $( "#encode" ).click( function() {
+      var pem = $("#env").val()
+      $.get( pem, function( pubkey ) {
+        var text = $("#text").val()
+        var enc = new JSEncrypt()
+        enc.setPublicKey( pubkey )
+        $("#encoded_text").val( enc.encrypt( text ) )
+      })
+    })
+
+    $( "#env" ).change( function() {
+      $("#encoded_text").val("")
+    })
+  </script>
+
+</html>
